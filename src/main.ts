@@ -2,6 +2,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from './app/app.module.js';
+import { setupSwagger } from './app/swagger.js';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
@@ -9,6 +10,7 @@ async function bootstrap() {
     logger: ['log', 'error', 'warn', 'debug', 'verbose']
   });
 
+  setupSwagger(app);
   app.enableShutdownHooks();
 
   const port = process.env.PORT ? Number(process.env.PORT) : 4000;

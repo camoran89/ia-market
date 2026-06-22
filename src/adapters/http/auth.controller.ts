@@ -1,19 +1,23 @@
 import { Body, Controller, Inject, Post } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 import { AuthService } from '../../application/auth.service.js';
-import { UserCredentials } from '../../domain/value-objects/user-credentials.type.js';
-import { UserEntity } from '../../domain/entities/user.entity.js';
+import { AuthLoginDto } from './dto/auth-login.dto.js';
+import { AuthRegisterDto } from './dto/auth-register.dto.js';
 
+@ApiTags('auth')
 @Controller('auth')
 export class AuthController {
   constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
   @Post('login')
-  async login(@Body() payload: UserCredentials) {
+  @ApiBody({ type: AuthLoginDto })
+  async login(@Body() payload: AuthLoginDto) {
     return this.authService.authenticate(payload);
   }
 
   @Post('register')
-  async register(@Body() payload: UserEntity) {
-    return this.authService.register(payload);
+  @ApiBody({ type: AuthRegisterDto })
+  async register(@Body() payload: AuthRegisterDto) {
+    return this.authService.register(payload as any);
   }
 }
