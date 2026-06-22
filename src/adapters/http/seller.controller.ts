@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { SellerService } from '../../application/seller.service.js';
 
 @Controller('seller')
 export class SellerController {
-  constructor(private readonly sellerService: SellerService) {}
+  constructor(@Inject(SellerService) private readonly sellerService: SellerService) {}
 
   @Post('catalog')
   async updateCatalog(@Body() payload: unknown) {

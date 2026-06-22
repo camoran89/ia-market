@@ -1,11 +1,11 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Inject, Post } from '@nestjs/common';
 import { AuthService } from '../../application/auth.service.js';
 import { UserCredentials } from '../../domain/value-objects/user-credentials.type.js';
 import { UserEntity } from '../../domain/entities/user.entity.js';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(@Inject(AuthService) private readonly authService: AuthService) {}
 
   @Post('login')
   async login(@Body() payload: UserCredentials) {

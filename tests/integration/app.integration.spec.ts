@@ -54,4 +54,39 @@ describe('App integration tests', () => {
     expect(response.status).toBe(201);
     expect(response.body.valid).toBeDefined();
   });
+
+  it('should authenticate a user', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/auth/login')
+      .send({ email: 'user@example.com', password: 'secret' });
+
+    expect(response.status).toBe(201);
+  });
+
+  it('should register a user', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/auth/register')
+      .send({ id: 'user-1', email: 'user@example.com', password: 'secret' });
+
+    expect(response.status).toBe(201);
+    expect(response.body.email).toBe('user@example.com');
+  });
+
+  it('should register subscription', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/subscription/register')
+      .send({ vendorId: 'vendor-1', plan: 'premium' });
+
+    expect(response.status).toBe(201);
+    expect(response.body.registered).toBe(true);
+  });
+
+  it('should list seller orders', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/seller/orders')
+      .query({ vendorId: 'vendor-1' });
+
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body)).toBe(true);
+  });
 });
