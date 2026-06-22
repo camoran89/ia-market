@@ -6,9 +6,7 @@ import { ChatIntentService } from './chat-intent.service.js';
 import { ChatReplyService } from './chat-reply.service.js';
 import { SearchService } from './search.service.js';
 import { ReceiptService } from './receipt.service.js';
-import { SellerService } from './seller.service.js';
 import { AdminService } from './admin.service.js';
-import { SubscriptionService } from './subscription.service.js';
 import { OrderService } from './order.service.js';
 import { VendorService } from './vendor.service.js';
 import { PostgresModule } from '../infrastructure/adapters/postgres.module.js';
@@ -31,10 +29,8 @@ import { SubscriptionRepository } from '../domain/repositories/subscription.repo
     ChatReplyService,
     SearchService,
     ReceiptService,
-    SellerService,
     VendorService,
     AdminService,
-    SubscriptionService,
     OrderService,
     {
       provide: OrderRepository,
@@ -61,10 +57,8 @@ import { SubscriptionRepository } from '../domain/repositories/subscription.repo
     ChatReplyService,
     SearchService,
     ReceiptService,
-    SellerService,
     VendorService,
     AdminService,
-    SubscriptionService,
     OrderService,
     OrderRepository,
     UserRepository,

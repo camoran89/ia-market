@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx ng serve --host 0.0.0.0 --open",
-    "build": "npx ng build",
-    "test": "npx vitest run",
-    "test:watch": "npx vitest"
+    "start": "ng serve --proxy-config proxy.conf.json",
+    "build": "ng build",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "keywords": [],
   "author": "",

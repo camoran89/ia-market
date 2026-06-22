@@ -3,14 +3,22 @@ import { ChatIntent } from './types/chat-intent.type.js';
 
 @Injectable()
 export class ChatIntentService {
-  detectIntent(text: string): ChatIntent {
-    const normalized = text.toLowerCase();
+  private readonly searchKeywords = ['buscar', 'necesito', 'quiero', 'producto', 'servicio', 'encuentra', 'dónde hay'];
+  private readonly orderKeywords = ['pedido', 'orden', 'comprar', 'pide', 'ordena'];
+  private readonly greetingKeywords = ['hola', 'buenos días', 'buenas tardes', 'buenas noches', 'qué tal'];
 
-    if (normalized.includes('buscar') || normalized.includes('quiero') || normalized.includes('producto')) {
+  detectIntent(text: string): ChatIntent {
+    const normalized = text.toLowerCase().trim();
+
+    if (this.greetingKeywords.some(keyword => normalized.startsWith(keyword))) {
+      return 'greeting';
+    }
+
+    if (this.searchKeywords.some(keyword => normalized.includes(keyword))) {
       return 'search';
     }
 
-    if (normalized.includes('pedido') || normalized.includes('orden')) {
+    if (this.orderKeywords.some(keyword => normalized.includes(keyword))) {
       return 'order';
     }
 
