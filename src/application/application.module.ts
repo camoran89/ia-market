@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service.js';
 import { BuyerService } from './buyer.service.js';
-import { ChatService } from './chat.service.js';
-import { SearchService } from './search.service.js';
+import { ChatService } from './chat.service.js';import { ChatIntentService } from './chat-intent.service.js';
+import { ChatReplyService } from './chat-reply.service.js';import { SearchService } from './search.service.js';
 import { ReceiptService } from './receipt.service.js';
 import { SellerService } from './seller.service.js';
 import { AdminService } from './admin.service.js';
@@ -18,6 +18,8 @@ import { UserRepository } from '../domain/repositories/user.repository.js';
     AuthService,
     BuyerService,
     ChatService,
+    ChatIntentService,
+    ChatReplyService,
     SearchService,
     ReceiptService,
     SellerService,
@@ -37,6 +39,8 @@ import { UserRepository } from '../domain/repositories/user.repository.js';
     AuthService,
     BuyerService,
     ChatService,
+    ChatIntentService,
+    ChatReplyService,
     SearchService,
     ReceiptService,
     SellerService,

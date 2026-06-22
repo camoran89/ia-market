@@ -1,38 +1,33 @@
 import { Injectable } from '@nestjs/common';
 import { SearchService } from './search.service.js';
+import { ChatIntentService } from './chat-intent.service.js';
+import { ChatReplyService } from './chat-reply.service.js';
+import { ChatIntent } from './types/chat-intent.type.js';
+import { SearchResponse } from './types/search-response.type.js';
 
 @Injectable()
 export class ChatService {
-  constructor(private readonly searchService: SearchService) {}
+  constructor(
+    private readonly searchService: SearchService,
+    private readonly chatIntentService: ChatIntentService,
+    private readonly chatReplyService: ChatReplyService
+  ) {}
 
   async processMessage(payload: unknown) {
     const text = typeof payload === 'object' && payload !== null && 'text' in payload
       ? String((payload as Record<string, unknown>).text)
       : '';
 
-    const intent = this.detectIntent(text);
-    const searchResults = intent === 'search'
+    const intent: ChatIntent = this.chatIntentService.detectIntent(text);
+    const searchResults: SearchResponse | null = intent === 'search'
       ? await this.searchService.search({ query: text })
       : null;
 
     return {
       intent,
-      reply: text
-        ? `He recibido tu mensaje: "${text}". Estoy buscando opciones cercanas...`
-        : 'Hola, cuéntame qué necesitas y te ayudo a encontrar opciones cercanas.',
+      reply: this.chatReplyService.buildReply(intent, text),
       map: searchResults?.results ?? [],
       search: searchResults
     };
-  }
-
-  private detectIntent(text: string) {
-    const normalized = text.toLowerCase();
-    if (normalized.includes('buscar') || normalized.includes('quiero') || normalized.includes('producto')) {
-      return 'search';
-    }
-    if (normalized.includes('pedido') || normalized.includes('orden')) {
-      return 'order';
-    }
-    return 'chat';
   }
 }
