@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -10,6 +10,6 @@ import { MatButtonModule } from '@angular/material/button';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent {
-  @Input() variant: 'primary' | 'secondary' = 'primary';
-  @Input() disabled = false;
+  readonly variant: WritableSignal<'primary' | 'secondary'> = signal('primary');
+  readonly disabled: WritableSignal<boolean> = signal(false);
 }

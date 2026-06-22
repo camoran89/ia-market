@@ -3,16 +3,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'ia-input',
+  selector: 'ia-textarea',
   standalone: true,
   imports: [MatFormFieldModule, MatInputModule],
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  templateUrl: './textarea.component.html',
+  styleUrls: ['./textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent {
+export class TextareaComponent {
   readonly label: WritableSignal<string> = signal('');
-  readonly value: WritableSignal<string> = signal('');
   readonly placeholder: WritableSignal<string> = signal('');
-  readonly type: WritableSignal<'text' | 'email' | 'password'> = signal('text');
+  readonly value: WritableSignal<string> = signal('');
 }
