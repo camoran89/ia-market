@@ -1,15 +1,9 @@
 <section class="vendor-shell">
   <ia-card>
     <h2 card-title>Suscripción de vendedor</h2>
-    <ia-input>
-      <span label>ID de Vendedor</span>
-      <input [(ngModel)]="vendorId" />
-    </ia-input>
+    <ia-input label="ID de Vendedor" [(ngModel)]="vendorId"></ia-input>
 
-    <ia-input>
-      <span label>Plan</span>
-      <input [(ngModel)]="plan" />
-    </ia-input>
+    <ia-input label="Plan" [(ngModel)]="plan"></ia-input>
 
     <ia-button (click)="subscribe()">Registrar suscripción</ia-button>
     <p>{{ status() }}</p>

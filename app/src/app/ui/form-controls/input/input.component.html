@@ -1,4 +1,11 @@
 <mat-form-field appearance="fill" class="full-width">
-  <ng-content select="[label]"></ng-content>
-  <ng-content select="input"></ng-content>
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [type]="type"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInputChange($event)"
+    [disabled]="isDisabled"
+  />
 </mat-form-field>
