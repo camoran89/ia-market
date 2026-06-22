@@ -1,0 +1,1 @@
+export const MAX_RECEIPT_SIZE_BYTES = 10_000_000;

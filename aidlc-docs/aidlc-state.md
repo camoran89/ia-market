@@ -22,7 +22,7 @@
 - [x] User Stories
 - [x] Workflow Planning
 - [x] Application Design
-- [ ] Code Generation
+- [x] Code Generation
 - [ ] Build and Test
 
 ## Extension Configuration
