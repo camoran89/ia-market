@@ -1,16 +1,17 @@
-import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatListModule } from '@angular/material/list';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { CardComponent } from './card.component.js';
+import { ListComponent } from '../lists/list.component.js';
+import { ListItemComponent } from '../lists/list-item.component.js';
 
 @Component({
   selector: 'ia-list-card',
   standalone: true,
-  imports: [MatCardModule, MatListModule],
+  imports: [CardComponent, ListComponent, ListItemComponent],
   templateUrl: './list-card.component.html',
   styleUrls: ['./list-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListCardComponent {
-  readonly title: WritableSignal<string> = signal('');
-  readonly items: WritableSignal<string[]> = signal([]);
+  title = input<string>();
+  items = input<string[]>();
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, WritableSignal, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
@@ -10,8 +10,4 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./textarea.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextareaComponent {
-  readonly label: WritableSignal<string> = signal('');
-  readonly placeholder: WritableSignal<string> = signal('');
-  readonly value: WritableSignal<string> = signal('');
-}
+export class TextareaComponent {}

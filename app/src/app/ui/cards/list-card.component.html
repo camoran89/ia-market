@@ -1,13 +1,11 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>{{ title() }}</mat-card-title>
-  </mat-card-header>
+<ia-card>
+  <h2 card-title>{{ title() }}</h2>
 
-  <mat-card-content>
-    <mat-list>
-      @for (item of items(); track item) {
-        <mat-list-item>{{ item }}</mat-list-item>
-      }
-    </mat-list>
-  </mat-card-content>
-</mat-card>
+  <ia-list>
+    @for (item of items(); track $index) {
+      <ia-list-item>
+        {{ item }}
+      </ia-list-item>
+    }
+  </ia-list>
+</ia-card>

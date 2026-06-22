@@ -1,0 +1,24 @@
+<section class="search-shell">
+  <ia-card>
+    <h2 card-title>Buscar vendedores</h2>
+    <ia-input>
+      <span label>Buscar por rubro o nombre</span>
+      <input [(ngModel)]="query" />
+    </ia-input>
+    <ia-button (click)="search()">Buscar</ia-button>
+  </ia-card>
+
+  <ia-card>
+    <h2 card-title>Resultados</h2>
+    <ia-list>
+      @for (let item of results(); track item) {
+      <ia-list-item>
+        <div>
+          <strong>{{ item.name }}</strong>
+          <p>{{ item.category }} • {{ item.distanceMeters }} m</p>
+        </div>
+      </ia-list-item>
+      }
+    </ia-list>
+  </ia-card>
+</section>
