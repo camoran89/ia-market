@@ -15,4 +15,8 @@ export class InMemoryUserRepository implements UserRepository {
     this.users.push(payload);
     return payload;
   }
+
+  async findAll(): Promise<UserEntity[]> {
+    return [...this.users];
+  }
 }

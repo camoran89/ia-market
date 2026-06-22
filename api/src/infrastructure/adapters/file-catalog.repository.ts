@@ -18,4 +18,8 @@ export class FileCatalogRepository extends JsonFileRepositoryBase<CatalogItemEnt
     const items = await this.readRecords();
     return items.filter(item => item.vendorId === vendorId);
   }
+
+  async findAll(): Promise<CatalogItemEntity[]> {
+    return this.readRecords();
+  }
 }

@@ -26,4 +26,10 @@ export class PostgresUserRepository implements UserRepository {
     );
     return payload;
   }
+
+  async findAll(): Promise<UserEntity[]> {
+    const queries = await this.queriesPromise;
+    const result = await this.pool.query(queries.SELECT_ALL_USERS);
+    return result.rows;
+  }
 }

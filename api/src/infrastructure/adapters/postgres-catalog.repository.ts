@@ -28,4 +28,10 @@ export class PostgresCatalogRepository implements CatalogRepository {
     const result = await this.pool.query(queries.SELECT_CATALOG_BY_VENDOR, [vendorId]);
     return result.rows;
   }
+
+  async findAll(): Promise<CatalogItemEntity[]> {
+    const queries = await this.queriesPromise;
+    const result = await this.pool.query(queries.SELECT_ALL_CATALOG_ITEMS);
+    return result.rows;
+  }
 }

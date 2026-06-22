@@ -21,4 +21,8 @@ export class FileUserRepository extends JsonFileRepositoryBase<UserEntity> imple
     await this.saveRecords(users);
     return payload;
   }
+
+  async findAll(): Promise<UserEntity[]> {
+    return this.readRecords();
+  }
 }

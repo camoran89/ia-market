@@ -11,3 +11,4 @@ ON CONFLICT (id) DO UPDATE SET
   category = EXCLUDED.category,
   created_at = EXCLUDED.created_at;
 SELECT_CATALOG_BY_VENDOR: SELECT * FROM catalog_items WHERE vendor_id = $1;
+SELECT_ALL_CATALOG_ITEMS: SELECT * FROM catalog_items;
