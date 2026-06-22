@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 import { OrderRepository } from '../domain/repositories/order.repository.js';
 import { OrderEntity } from '../domain/entities/order.entity.js';
 
 @Injectable()
 export class OrderService {
-  constructor(private readonly orderRepository: OrderRepository) {}
+  constructor(@Inject(OrderRepository) private readonly orderRepository: OrderRepository) {}
 
   async createOrder(payload: OrderEntity) {
     const enrichedOrder: OrderEntity = {

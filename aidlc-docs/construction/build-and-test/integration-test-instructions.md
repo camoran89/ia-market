@@ -21,5 +21,9 @@ npx vitest run tests/integration
 ## Ejemplos
 - `GET /buyer/transactions?userId=user-1`
 - `POST /chat/message`
+- `POST /search`
 - `POST /receipt/validate`
 - `POST /subscription/register`
+
+## Artefactos de prueba
+- Archivo de integración creado en `tests/integration/app.integration.spec.ts`.

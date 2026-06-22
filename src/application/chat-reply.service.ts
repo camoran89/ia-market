@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { ChatIntent } from './types/chat-intent.type.js';
 
+@Injectable()
 export class ChatReplyService {
   buildReply(intent: ChatIntent, text: string) {
     if (intent === 'search') {

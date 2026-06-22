@@ -1,10 +1,10 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, Query } from '@nestjs/common';
 import { BuyerService } from '../../application/buyer.service.js';
 import { OrderEntity } from '../../domain/entities/order.entity.js';
 
 @Controller('buyer')
 export class BuyerController {
-  constructor(private readonly buyerService: BuyerService) {}
+  constructor(@Inject(BuyerService) private readonly buyerService: BuyerService) {}
 
   @Get('transactions')
   async getTransactions(@Query('userId') userId: string) {

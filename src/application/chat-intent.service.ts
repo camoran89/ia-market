@@ -1,5 +1,7 @@
+import { Injectable } from '@nestjs/common';
 import { ChatIntent } from './types/chat-intent.type.js';
 
+@Injectable()
 export class ChatIntentService {
   detectIntent(text: string): ChatIntent {
     const normalized = text.toLowerCase();

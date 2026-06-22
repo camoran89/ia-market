@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { SearchService } from './search.service.js';
 import { ChatIntentService } from './chat-intent.service.js';
 import { ChatReplyService } from './chat-reply.service.js';
@@ -8,9 +8,9 @@ import { SearchResponse } from './types/search-response.type.js';
 @Injectable()
 export class ChatService {
   constructor(
-    private readonly searchService: SearchService,
-    private readonly chatIntentService: ChatIntentService,
-    private readonly chatReplyService: ChatReplyService
+    @Inject(SearchService) private readonly searchService: SearchService,
+    @Inject(ChatIntentService) private readonly chatIntentService: ChatIntentService,
+    @Inject(ChatReplyService) private readonly chatReplyService: ChatReplyService
   ) {}
 
   async processMessage(payload: unknown) {
