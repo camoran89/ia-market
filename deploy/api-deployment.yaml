@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ia-marketplace-api
+  labels:
+    app: ia-marketplace-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ia-marketplace-api
+  template:
+    metadata:
+      labels:
+        app: ia-marketplace-api
+    spec:
+      containers:
+        - name: api
+          image: ia-marketplace-api:latest
+          ports:
+            - containerPort: 4000
+          env:
+            - name: DATABASE_HOST
+              value: postgres
+            - name: DATABASE_PORT
+              value: '5432'
+            - name: DATABASE_NAME
+              value: ia_marketplace
+            - name: DATABASE_USER
+              value: ia_market_user
+            - name: DATABASE_PASSWORD
+              value: ia_market_pass
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ia-marketplace-api
+spec:
+  selector:
+    app: ia-marketplace-api
+  ports:
+    - port: 4000
+      targetPort: 4000
+      protocol: TCP

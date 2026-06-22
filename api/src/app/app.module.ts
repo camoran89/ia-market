@@ -7,6 +7,7 @@ import { ChatModule } from '../adapters/http/chat.module.js';
 import { SearchModule } from '../adapters/http/search.module.js';
 import { ReceiptModule } from '../adapters/http/receipt.module.js';
 import { SubscriptionModule } from '../adapters/http/subscription.module.js';
+import { VendorModule } from '../adapters/http/vendor.module.js';
 import { ApplicationModule } from '../application/application.module.js';
 import { AppController } from '../adapters/http/app.controller.js';
 
@@ -20,7 +21,8 @@ import { AppController } from '../adapters/http/app.controller.js';
     ChatModule,
     SearchModule,
     ReceiptModule,
-    SubscriptionModule
+    SubscriptionModule,
+    VendorModule
   ],
   controllers: [AppController]
 })
