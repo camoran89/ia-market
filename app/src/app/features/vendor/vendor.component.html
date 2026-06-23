@@ -1,10 +1,13 @@
 <section class="vendor-shell">
   <ia-card>
+    <h2 card-title>Chat conversacional de vendedor</h2>
+    <p>Usa el chat para crear productos, publicar catálogo y gestionar suscripción.</p>
+    <ia-chat-window [messages]="messages()" (messageSent)="handleMessage($event)"></ia-chat-window>
+  </ia-card>
+  <ia-card>
     <h2 card-title>Suscripción de vendedor</h2>
     <ia-input label="ID de Vendedor" [(ngModel)]="vendorId"></ia-input>
-
     <ia-input label="Plan" [(ngModel)]="plan"></ia-input>
-
     <ia-button (click)="subscribe()">Registrar suscripción</ia-button>
     <p>{{ status() }}</p>
   </ia-card>

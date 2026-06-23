@@ -1,1 +1,1 @@
-export type ChatIntent = 'search' | 'order' | 'chat' | 'greeting';
+export type ChatIntent = 'search' | 'order' | 'chat' | 'greeting' | 'vendorAction';

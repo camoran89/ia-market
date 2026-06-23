@@ -11,6 +11,8 @@ export class ChatReplyService {
         return `Entendido. Buscando resultados para "${text}"...`;
       case 'order':
         return `Perfecto, empecemos con tu pedido. ¿Qué producto o servicio te gustaría ordenar?`;
+      case 'vendorAction':
+        return 'Entendido, acción de vendedor detectada. Puedo ayudarte a crear un producto, publicar tu catálogo o gestionar tu suscripción.';
       case 'chat':
       default:
         return 'No he entendido bien. ¿Puedes reformular tu pregunta? Puedes pedirme que busque productos o que te ayude con un pedido.';
