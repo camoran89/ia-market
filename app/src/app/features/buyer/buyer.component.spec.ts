@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/angular';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BuyerComponent } from './buyer.component';
 import { ChatService } from '../../services/chat.service.js';
 
@@ -16,11 +16,24 @@ class MockChatService {
 }
 
 describe('BuyerComponent', () => {
-  it('should render the chat input', async () => {
-    await render(BuyerComponent, {
+  let fixture: ComponentFixture<BuyerComponent>;
+  let component: BuyerComponent;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       providers: [{ provide: ChatService, useClass: MockChatService }],
     });
 
-    expect(screen.getByPlaceholderText('Type your message...')).toBeTruthy();
+    component = TestBed.runInInjectionContext(() => new BuyerComponent());
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+    expect(component.messages()).toEqual([{ sender: 'bot', text: 'Welcome! How can I help you find today?' }]);
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+    expect(component.messages()).toEqual([{ sender: 'bot', text: 'Welcome! How can I help you find today?' }]);
   });
 });

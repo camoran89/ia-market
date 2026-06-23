@@ -42,7 +42,17 @@ export class ChatService {
         map(response => ({ sender: 'bot' as const, text: response.reply })),
         tap(botMessage => this.conversation.appendMessage(botMessage)),
         catchError(error => {
-          this.conversation.error.set(error?.message ?? 'Chat request failed');
+          let message = 'Chat request failed';
+          if (typeof error?.error === 'string') {
+            message = error.error;
+          } else if (error?.error?.message) {
+            message = error.error.message;
+          } else if (error?.statusText) {
+            message = error.statusText;
+          } else if (typeof error?.message === 'string') {
+            message = error.message;
+          }
+          this.conversation.error.set(message);
           return EMPTY;
         }),
         finalize(() => this.conversation.loading.set(false)),

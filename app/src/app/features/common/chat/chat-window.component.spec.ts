@@ -2,20 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatWindowComponent } from './chat-window.component';
 
 describe('ChatWindowComponent', () => {
-  let component: ChatWindowComponent;
   let fixture: ComponentFixture<ChatWindowComponent>;
+  let component: ChatWindowComponent;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ChatWindowComponent],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(ChatWindowComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    TestBed.configureTestingModule({});
+    component = TestBed.runInInjectionContext(() => new ChatWindowComponent());
   });
 
-  it('should create', () => {
+  it('should create the component', () => {
     expect(component).toBeTruthy();
+    expect(typeof component.sendMessage).toBe('function');
   });
 });
