@@ -1,22 +1,26 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { render, screen } from '@testing-library/angular';
 import { BuyerComponent } from './buyer.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ChatService } from '../../services/chat.service.js';
+
+class MockChatService {
+  readonly conversation = {
+    messagesSignal: () => [{ sender: 'bot', text: 'Welcome! How can I help you find today?' }],
+    loading: () => false,
+    error: () => null,
+  };
+  sendMessage() {
+    return {
+      subscribe: () => {},
+    };
+  }
+}
 
 describe('BuyerComponent', () => {
-  let component: BuyerComponent;
-  let fixture: ComponentFixture<BuyerComponent>;
+  it('should render the chat input', async () => {
+    await render(BuyerComponent, {
+      providers: [{ provide: ChatService, useClass: MockChatService }],
+    });
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [BuyerComponent, NoopAnimationsModule],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(BuyerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(screen.getByPlaceholderText('Type your message...')).toBeTruthy();
   });
 });

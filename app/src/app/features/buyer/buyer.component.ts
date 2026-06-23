@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ChatWindowComponent } from '../common/chat/chat-window.component.js';
 import { ChatService } from '../../services/chat.service.js';
 
@@ -10,7 +10,7 @@ import { ChatService } from '../../services/chat.service.js';
   imports: [ChatWindowComponent],
 })
 export class BuyerComponent {
-  private chatService = inject(ChatService);
+  readonly chatService = inject(ChatService);
   readonly messages = this.chatService.conversation.messagesSignal;
 
   handleMessage(messageText: string) {

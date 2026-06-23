@@ -11,6 +11,8 @@ import { Message } from './types/message.type.js';
 })
 export class ChatWindowComponent {
   messages = input.required<Message[]>();
+  loading = input<boolean>();
+  error = input<string | null>();
   messageSent = output<string>();
   
   newMessage = '';

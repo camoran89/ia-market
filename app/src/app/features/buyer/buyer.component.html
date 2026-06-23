@@ -1,3 +1,8 @@
 <div class="buyer-container">
-  <app-chat-window [messages]="messages()" (messageSent)="handleMessage($event)" />
+  <app-chat-window
+    [messages]="messages()"
+    [loading]="chatService.conversation.loading()"
+    [error]="chatService.conversation.error()"
+    (messageSent)="handleMessage($event)"
+  />
 </div>

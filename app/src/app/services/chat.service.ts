@@ -9,7 +9,7 @@ import { ChatConversationStore } from './chat-conversation.store';
   providedIn: 'root',
 })
 export class ChatService {
-  private readonly apiUrl = '/api/chat';
+  private readonly apiUrl = '/api/chat/message';
   private readonly http = inject(HttpClient);
   readonly conversation = inject(ChatConversationStore);
   private readonly requestPayload = signal<{ text: string; role: 'buyer' | 'vendor'; vendorId?: string } | null>(null);

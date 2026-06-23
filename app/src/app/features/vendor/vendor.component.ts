@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { ChatWindowComponent } from '../common/chat/chat-window.component.js';
 import { ChatService } from '../../services/chat.service.js';
 import { ButtonComponent } from '../../ui/buttons/button.component.js';
@@ -16,7 +16,7 @@ import { InputComponent } from '../../ui/form-controls/input/input.component.js'
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class VendorComponent {
-  private readonly chatService = inject(ChatService);
+  readonly chatService = inject(ChatService);
   readonly vendorId = signal('vendor-123');
   readonly plan = signal('standard');
   readonly status = signal('');
