@@ -37,6 +37,27 @@ describe('App integration tests', () => {
     expect(response.body.search).toBeDefined();
   });
 
+  it('should execute a vendor chat action for subscription registration', async () => {
+    const response = await request(app.getHttpServer())
+      .post('/chat/message')
+      .send({
+        text: 'quiero registrar una suscripción',
+        role: 'vendor',
+        vendorId: 'vendor-1',
+        action: 'registerSubscription',
+        plan: 'premium'
+      });
+
+    expect(response.status).toBe(201);
+    expect(response.body.intent).toBe('vendorAction');
+    expect(response.body.action).toBeDefined();
+    expect(response.body.action.subscription).toMatchObject({
+      vendorId: 'vendor-1',
+      plan: 'premium',
+      active: true
+    });
+  });
+
   it('should execute search', async () => {
     const response = await request(app.getHttpServer())
       .post('/search')
